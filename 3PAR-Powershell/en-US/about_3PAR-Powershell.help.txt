@@ -1,0 +1,14 @@
+PSTOPIC
+    about_3PAR-Powershell
+
+SHORT DESCRIPTION
+    3PAR-Powershell is a Powershell's module for working with HP 3PAR StoreServ array
+
+LONG DESCRIPTION
+    3PAR-Powershell is a Powershell's module for working with HP 3PAR StoreServ array
+
+    Source of the module is available at:
+        https://github.com/equelin/3PAR-Powershell
+
+DETAILED DESCRIPTION
+    3PAR-Powershell is a Powershell's module for working with HP 3PAR StoreServ array. For now you can query the 3PAR array to retrieve informations like volumes and hosts lists.
