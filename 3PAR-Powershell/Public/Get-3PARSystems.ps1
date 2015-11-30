@@ -1,4 +1,4 @@
-Function Get-3PARVolumes {
+Function Get-3PARSystems {
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'LUN Name')]
@@ -9,22 +9,20 @@ Function Get-3PARVolumes {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/volumes'
+  $data = Send-3PARRequest -uri '/system'
 
   # Results
-  $dataPS = ($data.content | ConvertFrom-Json).members
-  $dataCount = ($data.content | ConvertFrom-Json).total
+  $dataPS = ($data.content | ConvertFrom-Json)
 
   # Add custom type to the resulting oject for formating purpose
   $AlldataPS = @()
 
   Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Volumes'
+    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Systems'
     $AlldataPS += $data
   }
 
   #Write result + Formating
-  Write-Verbose "Total number of volumes: $($dataCount)"
   If ($name) {
       Write-Verbose "Return result(s) with the filter: $($name)"
       return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}

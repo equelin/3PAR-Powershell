@@ -17,7 +17,7 @@ Function Connect-3PAR {
     Write-Verbose -Message 'Validating that login details were passed into username/password or credentials'
     if ($Password -eq $null -and $Credentials -eq $null)
     {
-        Write-Warning -Message 'You did not submit a username, password, or credentials.'
+        Write-Verbose -Message 'Missing username, password, or credentials.'
         $Credentials = Get-Credential -Message 'Please enter administrative credentials for your HP 3PAR StoreServ Array'
     }
 
@@ -48,13 +48,13 @@ Function Connect-3PAR {
         throw $_
     }
 
-    $key =
-
     $global:3parArray = $Server
     $global:3parKey = ($credentialdata.Content | ConvertFrom-Json).key
     Write-Verbose -Message "Acquired token: $global:3parKey"
+    Write-Verbose -Message 'You are now connected to the HP 3PAR StoreServ Array.'
 
-    Write-Host -Object 'You are now connected to the HP 3PAR StoreServ Array.'
+    Write-Verbose -Message 'Show array informations'
+    Get-3PARSystems
   }
 
   End {}

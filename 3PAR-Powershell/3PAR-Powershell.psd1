@@ -18,13 +18,13 @@ ModuleVersion = '0.0.1'
 GUID = 'bef3789f-2093-4ed3-93de-7b1b5c40c2ac'
 
 # Author of this module
-Author = 'Erwan Quélin'
+Author = 'Erwan Quelin'
 
 # Company or vendor of this module
 #CompanyName = 'Unknown'
 
 # Copyright statement for this module
-Copyright = '(c) 2015 Erwan Quélin. All rights reserved.'
+Copyright = '(c) 2015 Erwan Quelin. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Powershell module for working with HP 3PAR StoreServ array'
@@ -60,7 +60,7 @@ PowerShellVersion = '3.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = '3PAR-Powershell.Format.ps1xml'
+FormatsToProcess = '3PAR-Powershell.Volumes.Format.ps1xml','3PAR-Powershell.Hosts.Format.ps1xml','3PAR-Powershell.Systems.Format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
