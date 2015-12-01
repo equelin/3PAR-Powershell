@@ -63,7 +63,7 @@ Describe 'Test public function Get-3PARVolumes' {
   InModuleScope 3PAR-Powershell {
 
     #Import test's datas
-    $volumesData = Import-Clixml "volumes.test.xml"
+    $volumesData = Import-Clixml ".\Tests\volumes.test.xml"
     #Mock Send-3PARRequest for returning test's data
     Mock Send-3PARRequest -MockWith {return $volumesData}
 
