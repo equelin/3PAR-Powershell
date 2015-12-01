@@ -21,7 +21,9 @@ Function Get-3PARHosts {
 
   Foreach ($data in $dataPS) {
     $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Hosts'
-    $AlldataPS += $data
+    If (!($data.ID -eq $null)) {
+      $AlldataPS += $data
+    }
   }
 
   #Write result + Formating

@@ -45,7 +45,7 @@ Describe -Tags 'VersionChecks' "3PAR-Powershell manifest and changelog" {
     }
 }
 
-Describe 'Test private function Check-3PARConnection' {
+Describe 'Private function Check-3PARConnection' {
   InModuleScope 3PAR-Powershell {
     It 'Throws an error if there is no $global:3parKey define' {
       $global:3parKey = $null
@@ -59,7 +59,33 @@ Describe 'Test private function Check-3PARConnection' {
   }
 }
 
-Describe 'Test public function Get-3PARVolumes' {
+Describe 'Public function Connect-3PAR' {
+  InModuleScope 3PAR-Powershell {
+
+    $IP = '192.168.0.1' #Fake array IP
+    $Username = '3paradm' #Fake array username
+    $Password = 'Password' #Fake array password
+    $secpasswd = ConvertTo-SecureString $Password -AsPlainText -Force
+    $Credentials = New-Object System.Management.Automation.PSCredential($Username,$secpasswd)
+
+    #Import test's datas
+    $CredentialData = Import-Clixml ".\Tests\credentialdata.test.xml"
+    #Mock Invoke-WebRequest for returning test's data
+    Mock Invoke-WebRequest -MockWith {return $CredentialData}
+
+    It 'Calls Connect-3PAR with Object s Credential' {
+      Connect-3PAR -Server $IP -Credentials $Credentials
+      $global:3parKey | Should Be '0-01930ac17c29760c451f66138de2cec8-c09a5d56'
+    }
+
+    It 'Calls Connect-3PAR with plain text username and SecureString password ' {
+      Connect-3PAR -Server $IP -Username $Username -Password $secpasswd
+      $global:3parKey | Should Be '0-01930ac17c29760c451f66138de2cec8-c09a5d56'
+    }
+  }
+}
+
+Describe 'Public function Get-3PARVolumes' {
   InModuleScope 3PAR-Powershell {
 
     #Import test's datas
@@ -71,7 +97,7 @@ Describe 'Test public function Get-3PARVolumes' {
       #Execute Get-3PARVolumes function
       $data = Get-3PARVolumes
       #Test result
-      $data.count | Should Be 20
+      $data.count | Should Be 19
     }
 
     It 'Calls Get-3PARVolumes with filtering -Name VMFS_DELL' {
@@ -79,7 +105,54 @@ Describe 'Test public function Get-3PARVolumes' {
       $data = Get-3PARVolumes -Name 'VMFS_DELL'
       #Test result
       $data.Name | Should Be 'VMFS_DELL'
-      $data.ID | Should Be 3
+    }
+  }
+}
+
+Describe 'Public function Get-3PARHosts' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\hosts.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARHosts without filtering' {
+      #Execute Get-3PARVolumes function
+      $data = Get-3PARHosts
+      #Test result
+      $data.count | Should Be 7
+    }
+
+    It 'Calls Get-3PARHosts with filtering -Name R1E1ESX01' {
+      #Execute Get-3PARVolumes function
+      $data = Get-3PARHosts -Name 'R1E1ESX01'
+      #Test result
+      $data.Name | Should Be 'R1E1ESX01'
+    }
+  }
+}
+
+Describe 'Public function Get-3PARSystems' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\systems.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARSystems without filtering' {
+      #Execute Get-3PARVolumes function
+      $data = Get-3PARSystems
+      #Test result
+      $data.Name | Should Be 'bdx-sr-3par01'
+    }
+
+    It 'Calls Get-3PARSystems with filtering -Name bdx-sr-3par01' {
+      #Execute Get-3PARVolumes function
+      $data = Get-3PARSystems -Name 'bdx-sr-3par01'
+      #Test result
+      $data.Name | Should Be 'bdx-sr-3par01'
     }
   }
 }

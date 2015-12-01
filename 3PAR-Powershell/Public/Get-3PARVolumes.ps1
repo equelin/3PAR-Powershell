@@ -20,7 +20,9 @@ Function Get-3PARVolumes {
 
   Foreach ($data in $dataPS) {
     $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Volumes'
-    $AlldataPS += $data
+    If (!($data.ID -eq $null)) {
+        $AlldataPS += $data
+    }
   }
 
   #Write result + Formating
