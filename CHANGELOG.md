@@ -1,4 +1,7 @@
-## 0.1.0 (December 01, 2015)
+## 0.1.1 (December 02, 2015)
+  - Add help on functions
+
+## 0.1.0 (December 02, 2015)
   - Add Pester's tests
   - Integration with AppVeyor
   - Connect-3PAR

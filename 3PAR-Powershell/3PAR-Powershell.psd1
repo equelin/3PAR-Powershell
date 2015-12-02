@@ -12,7 +12,7 @@
 RootModule = '3PAR-Powershell.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.1.1'
 
 # ID used to uniquely identify this module
 GUID = 'bef3789f-2093-4ed3-93de-7b1b5c40c2ac'
