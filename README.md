@@ -53,7 +53,7 @@ This is not fully featured or tested, but pull requests would be welcome!
 
 ![Search Questions](/Media/Get-3PARCpgs.png)
 
-#Availables functions
+#Available functions
 
 - Connect-3PAR
 - Get-3PARAo
