@@ -1,7 +1,7 @@
 Function Get-3PARSystems {
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'LUN Name')]
+      [Parameter(Mandatory = $false,HelpMessage = 'System Name')]
       [String]$name
   )
 
