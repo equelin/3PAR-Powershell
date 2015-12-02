@@ -51,7 +51,7 @@ This is not fully featured or tested, but pull requests would be welcome!
     Get-3PARCpgs -Name FC_r1
 ```
 
-![Search Questions](/Media/Get-3PARCpgs.png)
+![Get-3PARCpgs](/Media/Get-3PARCpgs.jpg)
 
 #Available functions
 
