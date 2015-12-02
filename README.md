@@ -32,7 +32,7 @@ This is not fully featured or tested, but pull requests would be welcome!
 
 #Examples
 
-### Connect the 3PAR array
+### Connect to the 3PAR array
 
 ```PowerShell
 # Connect to the 3PAR array
@@ -41,7 +41,7 @@ This is not fully featured or tested, but pull requests would be welcome!
 
 ![Connect-3PAR](/Media/Connect-3PAR.jpg)
 
-### Search Stack Exchange Questions
+### List CPGs
 
 ```PowerShell
 # Get a list of the CPGs
