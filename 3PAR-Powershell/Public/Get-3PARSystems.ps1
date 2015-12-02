@@ -1,4 +1,19 @@
 Function Get-3PARSystems {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about the array.
+      .DESCRIPTION
+      This function will retrieve informations about the array. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence.
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARSystems
+      Retrieve information about the array.
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'System Name')]

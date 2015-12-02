@@ -1,8 +1,23 @@
 Function Get-3PARPorts {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about ports.
+      .DESCRIPTION
+      This function will retrieve informations about ports. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARHostSets
+      List all the ports.
+  #>
+
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'Port Position n:s:p')]
-      [String]$Position
+      #[Parameter(Mandatory = $false,HelpMessage = 'Port Position n:s:p')]
+      #[String]$Position
   )
 
   # Test if connection exist

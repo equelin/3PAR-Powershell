@@ -1,4 +1,19 @@
 Function Connect-3PAR {
+
+  <#
+      .SYNOPSIS
+      Establish connection to the HP 3PAR StoreServ array
+      .DESCRIPTION
+      This function will retrieve a key session from the HP 3PAR StoreServ array. This key will be used by the other functions.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Connect-3PAR -Server 192.168.0.1
+      Connect to the array with the IP 192.168.0.1
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $true,Position = 0,HelpMessage = 'HP 3PAR StoreServ FQDN or IP address')]

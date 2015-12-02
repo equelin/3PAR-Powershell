@@ -1,4 +1,22 @@
 Function Get-3PARVLuns {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about virtual luns
+      .DESCRIPTION
+      This function will retrieve informations about virtual luns. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARVLuns
+      List all the virtual luns
+      .EXAMPLE
+      Get-3PARVLuns -Name 'VL01'
+      Retrieve information about the virtual lun named VL01
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'Volume Name')]

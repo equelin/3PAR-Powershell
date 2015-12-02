@@ -1,4 +1,22 @@
 Function Get-3PARCpgs {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about CPGs
+      .DESCRIPTION
+      This function will retrieve informations about CPGs. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARCpgs
+      List all the CPGs
+      .EXAMPLE
+      Get-3PARCpgs -Name 'SSD-RAID1'
+      Retrieve information about the CPG named SSD-RAID1
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'CPG Name')]

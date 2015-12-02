@@ -1,4 +1,19 @@
 Function Get-3PARWsapiConfiguration {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about the configuration of WSAPI.
+      .DESCRIPTION
+      This function will retrieve informations about the configuration of WSAPI. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence.
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARWsapiConfiguration
+      Retrieve information about the configuration of WSAPI.
+  #>
+
   [CmdletBinding()]
   Param()
 

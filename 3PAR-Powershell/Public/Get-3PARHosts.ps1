@@ -1,4 +1,22 @@
 Function Get-3PARHosts {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about Hosts
+      .DESCRIPTION
+      This function will retrieve informations about hosts. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARHosts
+      List all the hosts
+      .EXAMPLE
+      Get-3PARHosts -Name 'SRV01'
+      Retrieve information about the host named SRV01
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'Host Name')]

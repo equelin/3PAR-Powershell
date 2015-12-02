@@ -1,4 +1,22 @@
 Function Get-3PARHostSets {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about Host Sets.
+      .DESCRIPTION
+      This function will retrieve informations about Host Sets. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARHostSets
+      List all the Host Sets
+      .EXAMPLE
+      Get-3PARHostSets -Name 'HS01'
+      Retrieve information about the host set named HS01
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'Host Set Name')]

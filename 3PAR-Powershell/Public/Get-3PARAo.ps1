@@ -1,4 +1,19 @@
 Function Get-3PARAo {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about the configuration of Adaptive optimization (AO).
+      .DESCRIPTION
+      This function will retrieve informations about the configuration of Adaptive optimization (AO). You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence.
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARAo
+      Retrieve information about the configuration of Adaptive optimization (AO).
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'AO Name')]

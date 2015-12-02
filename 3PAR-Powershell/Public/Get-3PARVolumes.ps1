@@ -1,7 +1,25 @@
 Function Get-3PARVolumes {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about Volumes
+      .DESCRIPTION
+      This function will retrieve informations about Volumes. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARVolumes
+      List all the volumes
+      .EXAMPLE
+      Get-3PARVolumes -Name 'LUN01'
+      Retrieve information about the volume named LUN01
+  #>
+
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'LUN Name')]
+      [Parameter(Mandatory = $false,HelpMessage = 'Volume Name')]
       [String]$name
   )
 

@@ -1,4 +1,19 @@
 Function Get-3PARCapacity {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about the space usage of the array.
+      .DESCRIPTION
+      This function will retrieve informations about the space usage of the array. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence.
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARCapacity
+      Retrieve information about space usage.
+  #>
+
   [CmdletBinding()]
   Param()
 

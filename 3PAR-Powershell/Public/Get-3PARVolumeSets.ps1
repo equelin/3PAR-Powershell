@@ -1,4 +1,22 @@
 Function Get-3PARVolumeSets {
+
+  <#
+      .SYNOPSIS
+      Retrieve informations about Volume Sets.
+      .DESCRIPTION
+      This function will retrieve informations about Volume Sets. You need to have an active session with the array.
+      .NOTES
+      Written by Erwan Quelin under Apache licence
+      .LINK
+      https://github.com/equelin/3PAR-Powershell
+      .EXAMPLE
+      Get-3PARVolumeSets
+      List all the volume sets
+      .EXAMPLE
+      Get-3PARVolumeSets -Name 'VS01'
+      Retrieve information about the volume sets named VS01
+  #>
+
   [CmdletBinding()]
   Param(
       [Parameter(Mandatory = $false,HelpMessage = 'Volume Set Name')]
