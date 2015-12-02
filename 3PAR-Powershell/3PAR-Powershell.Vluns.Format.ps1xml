@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+    <View>
+      <Name>3PARVLunsTable</Name>
+      <ViewSelectedBy>
+        <TypeName>3PAR.VLuns</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>Name</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>LUN</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>Hostname</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+        </TableHeaders>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>volumeName</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>lun</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>hostname</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

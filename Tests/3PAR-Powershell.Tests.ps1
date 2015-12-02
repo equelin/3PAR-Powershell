@@ -69,7 +69,7 @@ Describe 'Public function Connect-3PAR' {
     $Credentials = New-Object System.Management.Automation.PSCredential($Username,$secpasswd)
 
     #Import test's datas
-    $CredentialData = Import-Clixml ".\Tests\credentialdata.test.xml"
+    $CredentialData = Import-Clixml ".\Tests\Data\credentialdata.test.xml"
     #Mock Invoke-WebRequest for returning test's data
     Mock Invoke-WebRequest -MockWith {return $CredentialData}
 
@@ -89,7 +89,7 @@ Describe 'Public function Get-3PARVolumes' {
   InModuleScope 3PAR-Powershell {
 
     #Import test's datas
-    $volumesData = Import-Clixml ".\Tests\volumes.test.xml"
+    $volumesData = Import-Clixml ".\Tests\Data\volumes.test.xml"
     #Mock Send-3PARRequest for returning test's data
     Mock Send-3PARRequest -MockWith {return $volumesData}
 
@@ -109,11 +109,35 @@ Describe 'Public function Get-3PARVolumes' {
   }
 }
 
+Describe 'Public function Get-3PARVolumeSets' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\volumesets.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARVolumeSets without filtering' {
+      #Execute Get-3PARVolumeSets function
+      $data = Get-3PARVolumeSets
+      #Test result
+      $data.Name | Should Be '86413_Root'
+    }
+
+    It 'Calls Get-3PARVolumeSets with filtering -Name 86413_Root' {
+      #Execute Get-3PARVolumeSets function
+      $data = Get-3PARVolumeSets -Name '86413_Root'
+      #Test result
+      $data.Name | Should Be '86413_Root'
+    }
+  }
+}
+
 Describe 'Public function Get-3PARHosts' {
   InModuleScope 3PAR-Powershell {
 
     #Import test's datas
-    $volumesData = Import-Clixml ".\Tests\hosts.test.xml"
+    $volumesData = Import-Clixml ".\Tests\Data\hosts.test.xml"
     #Mock Send-3PARRequest for returning test's data
     Mock Send-3PARRequest -MockWith {return $volumesData}
 
@@ -133,11 +157,35 @@ Describe 'Public function Get-3PARHosts' {
   }
 }
 
+Describe 'Public function Get-3PARHostSets' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\hostsets.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARHostSets without filtering' {
+      #Execute Get-3PARHostSets function
+      $data = Get-3PARHostSets
+      #Test result
+      $data.count | Should Be 2
+    }
+
+    It 'Calls Get-3PARHostSets with filtering -Name Cluster_ESX_DELL' {
+      #Execute Get-3PARHostSets function
+      $data = Get-3PARHostSets -Name 'Cluster_ESX_DELL'
+      #Test result
+      $data.Name | Should Be 'Cluster_ESX_DELL'
+    }
+  }
+}
+
 Describe 'Public function Get-3PARSystems' {
   InModuleScope 3PAR-Powershell {
 
     #Import test's datas
-    $volumesData = Import-Clixml ".\Tests\systems.test.xml"
+    $volumesData = Import-Clixml ".\Tests\Data\systems.test.xml"
     #Mock Send-3PARRequest for returning test's data
     Mock Send-3PARRequest -MockWith {return $volumesData}
 
@@ -153,6 +201,92 @@ Describe 'Public function Get-3PARSystems' {
       $data = Get-3PARSystems -Name 'bdx-sr-3par01'
       #Test result
       $data.Name | Should Be 'bdx-sr-3par01'
+    }
+  }
+}
+
+Describe 'Public function Get-3PARCpgs' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\cpgs.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARCpgs without filtering' {
+      #Execute Get-3PARCpgs function
+      $data = Get-3PARCpgs
+      #Test result
+      $data.count | Should Be 2
+    }
+
+    It 'Calls Get-3PARCpgs with filtering -Name SSD-RAID1' {
+      #Execute Get-3PARCpgs function
+      $data = Get-3PARCpgs -Name 'SSD-RAID1'
+      #Test result
+      $data.Name | Should Be 'SSD-RAID1'
+    }
+  }
+}
+
+Describe 'Public function Get-3PARPorts' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\ports.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARPorts without filtering' {
+      #Execute Get-3PARPorts function
+      $data = Get-3PARPorts
+      #Test result
+      $data.count | Should Be 10
+    }
+  }
+}
+
+Describe 'Public function Get-3PARVluns' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\vluns.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARVluns without filtering' {
+      #Execute Get-3PARVluns function
+      $data = Get-3PARVluns
+      #Test result
+      $data.count | Should Be 44
+    }
+
+    It 'Calls Get-3PARVluns with filtering -Name VMWARE-DELLDEMO-2TB' {
+      #Execute Get-3PARVluns function
+      $data = Get-3PARVluns -Name 'VMWARE-DELLDEMO-2TB'
+      #Test result
+      $data.count | Should Be 10
+    }
+  }
+}
+
+Describe 'Public function Get-3PARCapacity' {
+  InModuleScope 3PAR-Powershell {
+
+    #Import test's datas
+    $volumesData = Import-Clixml ".\Tests\Data\capacity.test.xml"
+    #Mock Send-3PARRequest for returning test's data
+    Mock Send-3PARRequest -MockWith {return $volumesData}
+
+    It 'Calls Get-3PARCapacity' {
+      #Execute Get-3PARCapacity function
+      $data = Get-3PARCapacity
+      #Test result
+      $i = 0
+      Foreach ($d in $data) {
+        $i += 1
+      }
+      $i | Should Be 1
     }
   }
 }

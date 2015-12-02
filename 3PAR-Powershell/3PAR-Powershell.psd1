@@ -60,7 +60,11 @@ PowerShellVersion = '3.0'
 # TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-FormatsToProcess = '3PAR-Powershell.Volumes.Format.ps1xml','3PAR-Powershell.Hosts.Format.ps1xml','3PAR-Powershell.Systems.Format.ps1xml'
+FormatsToProcess = '3PAR-Powershell.Volumes.Format.ps1xml','3PAR-Powershell.Hosts.Format.ps1xml',
+                   '3PAR-Powershell.Systems.Format.ps1xml','3PAR-Powershell.Cpgs.Format.ps1xml',
+                   '3PAR-Powershell.VolumeSets.Format.ps1xml','3PAR-Powershell.HostSets.Format.ps1xml',
+                   '3PAR-Powershell.Ports.Format.ps1xml','3PAR-Powershell.Vluns.Format.ps1xml',
+                   '3PAR-Powershell.Ao.Format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
