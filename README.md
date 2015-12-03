@@ -52,6 +52,8 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
 #Examples
 ### Connect to the 3PAR array
 
+The first thing to do is to connect to an array:
+
 ```PowerShell
 # Connect to the 3PAR array
     Connect-3PAR -Server 192.168.0.1
