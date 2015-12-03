@@ -50,7 +50,6 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
 ```
 
 #Examples
-
 ### Connect to the 3PAR array
 
 ```PowerShell
@@ -82,8 +81,6 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
     SSD_r5 4  0       0
 ```
 
-
-
 #Available functions
 
 - Connect-3PAR
@@ -100,7 +97,13 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
 - Get-3PARVolumeSets
 - Get-3PARWsapiConfiguration
 
-## License
+# Author
+
+**Erwan Quélin**
+- <https://github.com/equelin>
+- <https://twitter.com/erwanquelin>
+
+# License
 
 Copyright 2015 Erwan Quelin.
 
