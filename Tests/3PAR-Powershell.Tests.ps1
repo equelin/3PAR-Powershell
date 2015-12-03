@@ -106,6 +106,13 @@ Describe 'Public function Get-3PARVolumes' {
       #Test result
       $data.Name | Should Be 'VMFS_DELL'
     }
+
+    It 'Calls Get-3PARVolumes with pipelining' {
+      #Execute Get-3PARVolumes function
+      $data = ('VMFS_DELL' | Get-3PARVolumes)
+      #Test result
+      $data.Name | Should Be 'VMFS_DELL'
+    }
   }
 }
 
@@ -130,6 +137,13 @@ Describe 'Public function Get-3PARVolumeSets' {
       #Test result
       $data.Name | Should Be '86413_Root'
     }
+
+    It 'Calls Get-3PARVolumeSets with pipelining' {
+      #Execute Get-3PARVolumeSets function
+      $data = ('86413_Root' | Get-3PARVolumeSets)
+      #Test result
+      $data.Name | Should Be '86413_Root'
+    }
   }
 }
 
@@ -145,12 +159,19 @@ Describe 'Public function Get-3PARHosts' {
       #Execute Get-3PARVolumes function
       $data = Get-3PARHosts
       #Test result
-      $data.count | Should Be 7
+      $data.count | Should Be 8
     }
 
     It 'Calls Get-3PARHosts with filtering -Name R1E1ESX01' {
-      #Execute Get-3PARVolumes function
+      #Execute Get-3PARHosts function
       $data = Get-3PARHosts -Name 'R1E1ESX01'
+      #Test result
+      $data.Name | Should Be 'R1E1ESX01'
+    }
+
+    It 'Calls Get-3PARHosts with pipelining' {
+      #Execute Get-3PARHosts function
+      $data = ('R1E1ESX01' | Get-3PARHosts)
       #Test result
       $data.Name | Should Be 'R1E1ESX01'
     }
@@ -175,6 +196,13 @@ Describe 'Public function Get-3PARHostSets' {
     It 'Calls Get-3PARHostSets with filtering -Name Cluster_ESX_DELL' {
       #Execute Get-3PARHostSets function
       $data = Get-3PARHostSets -Name 'Cluster_ESX_DELL'
+      #Test result
+      $data.Name | Should Be 'Cluster_ESX_DELL'
+    }
+
+    It 'Calls Get-3PARHostSets with pipelining' {
+      #Execute Get-3PARHostSets function
+      $data = ('Cluster_ESX_DELL' | Get-3PARHostSets)
       #Test result
       $data.Name | Should Be 'Cluster_ESX_DELL'
     }
@@ -226,6 +254,13 @@ Describe 'Public function Get-3PARCpgs' {
       #Test result
       $data.Name | Should Be 'SSD-RAID1'
     }
+
+    It 'Calls Get-3PARCpgs with pipelining' {
+      #Execute Get-3PARCpgs function
+      $data = ('SSD-RAID1' | Get-3PARCpgs)
+      #Test result
+      $data.Name | Should Be 'SSD-RAID1'
+    }
   }
 }
 
@@ -264,6 +299,13 @@ Describe 'Public function Get-3PARVluns' {
     It 'Calls Get-3PARVluns with filtering -Name VMWARE-DELLDEMO-2TB' {
       #Execute Get-3PARVluns function
       $data = Get-3PARVluns -Name 'VMWARE-DELLDEMO-2TB'
+      #Test result
+      $data.count | Should Be 10
+    }
+
+    It 'Calls Get-3PARVluns with pipelining' {
+      #Execute Get-3PARVluns function
+      $data = ('VMWARE-DELLDEMO-2TB' | Get-3PARVluns)
       #Test result
       $data.count | Should Be 10
     }

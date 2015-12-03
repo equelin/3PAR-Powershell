@@ -19,37 +19,36 @@ Function Get-3PARVolumeSets {
 
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'Volume Set Name')]
+      [Parameter(Mandatory = $false,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'Volume Set Name')]
       [String]$name
   )
 
-  # Test if connection exist
-  Check-3PARConnection
+  Begin {
+    # Test if connection exist
+    Check-3PARConnection
 
-  #Request
-  $data = Send-3PARRequest -uri '/volumesets'
+    #Request
+    $data = Send-3PARRequest -uri '/volumesets'
 
-  # Results
-  $dataPS = ($data.content | ConvertFrom-Json).members
-  $dataCount = ($data.content | ConvertFrom-Json).total
+    # Results
+    $dataPS = ($data.content | ConvertFrom-Json).members
+    $dataCount = ($data.content | ConvertFrom-Json).total
 
-  # Add custom type to the resulting oject for formating purpose
-  $AlldataPS = @()
+    # Add custom type to the resulting oject for formating purpose
+    [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.VolumeSets'
 
-  Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.VolumeSets'
-    If (!($data.ID -eq $null)) {
-        $AlldataPS += $data
+    #Write result + Formating
+    Write-Verbose "Total number of Volume Sets: $($dataCount)"
+  }
+
+  Process {
+    If ($name) {
+        Write-Verbose "Return result(s) with the filter: $($name)"
+        return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
+    } else {
+        Write-Verbose "Return result(s) without any filter"
+        return $AlldataPS
     }
   }
 
-  #Write result + Formating
-  Write-Verbose "Total number of Volume Sets: $($dataCount)"
-  If ($name) {
-      Write-Verbose "Return result(s) with the filter: $($name)"
-      return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
-  } else {
-      Write-Verbose "Return result(s) without any filter"
-      return $AlldataPS
-  }
 }

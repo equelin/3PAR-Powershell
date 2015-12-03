@@ -19,10 +19,11 @@ Function Get-3PARCpgs {
 
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'CPG Name')]
+      [Parameter(Mandatory = $false,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'CPG Name')]
       [String]$name
   )
 
+  Begin {
   # Test if connection exist
   Check-3PARConnection
 
@@ -34,22 +35,19 @@ Function Get-3PARCpgs {
   $dataCount = ($data.content | ConvertFrom-Json).total
 
   # Add custom type to the resulting oject for formating purpose
-  $AlldataPS = @()
+  [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Cpgs'
 
-  Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Cpgs'
-    If (!($data.ID -eq $null)) {
-        $AlldataPS += $data
+  Write-Verbose "Total number of volumes: $($dataCount)"
+}
+
+  Process {
+    #Write result + Formating
+    If ($name) {
+        Write-Verbose "Return result(s) with the filter: $($name)"
+        return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
+    } else {
+        Write-Verbose "Return result(s) without any filter"
+        return $AlldataPS
     }
-  }
-
-  #Write result + Formating
-  Write-Verbose "Total number of CPGs: $($dataCount)"
-  If ($name) {
-      Write-Verbose "Return result(s) with the filter: $($name)"
-      return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
-  } else {
-      Write-Verbose "Return result(s) without any filter"
-      return $AlldataPS
   }
 }

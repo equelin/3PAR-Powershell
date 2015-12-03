@@ -19,37 +19,34 @@ Function Get-3PARHosts {
 
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'Host Name')]
+      [Parameter(Mandatory = $false,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'Host Name')]
       [String]$name
   )
 
-  # Test if connection exist
-  Check-3PARConnection
+  Begin {
+    # Test if connection exist
+    Check-3PARConnection
 
-  $data = $null
+    $data = $null
 
-  #Request
-  $data = Send-3PARRequest -uri '/hosts'
+    #Request
+    $data = Send-3PARRequest -uri '/hosts'
 
-  # Results
-  $dataPS = ($data.content | ConvertFrom-Json).members
+    # Results
+    $dataPS = ($data.content | ConvertFrom-Json).members
 
-  # Add custom type to the resulting oject for formating purpose
-  $AlldataPS = @()
-
-  Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Hosts'
-    If (!($data.ID -eq $null)) {
-      $AlldataPS += $data
-    }
+    # Add custom type to the resulting oject for formating purpose
+    [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Hosts'
   }
 
-  #Write result + Formating
-  If ($name) {
-      Write-Verbose "Return result(s) with the filter: $($name)"
-      return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
-  } else {
-      Write-Verbose "Return result(s) without any filter"
-      return $AlldataPS
+  Process {
+    #Write result + Formating
+    If ($name) {
+        Write-Verbose "Return result(s) with the filter: $($name)"
+        return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
+    } else {
+        Write-Verbose "Return result(s) without any filter"
+        return $AlldataPS
+    }
   }
 }

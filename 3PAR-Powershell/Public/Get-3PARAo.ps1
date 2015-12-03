@@ -16,37 +16,35 @@ Function Get-3PARAo {
 
   [CmdletBinding()]
   Param(
-      [Parameter(Mandatory = $false,HelpMessage = 'AO Name')]
+      [Parameter(Mandatory = $false,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'AO Name')]
       [String]$name
   )
 
-  # Test if connection exist
-  Check-3PARConnection
+  Begin {
+    # Test if connection exist
+    Check-3PARConnection
 
-  #Request
-  $data = Send-3PARRequest -uri '/aoconfigurations'
+    #Request
+    $data = Send-3PARRequest -uri '/aoconfigurations'
 
-  # Results
-  $dataPS = ($data.content | ConvertFrom-Json).members
-  $dataCount = ($data.content | ConvertFrom-Json).total
+    # Results
+    $dataPS = ($data.content | ConvertFrom-Json).members
+    $dataCount = ($data.content | ConvertFrom-Json).total
 
-  # Add custom type to the resulting oject for formating purpose
-  $AlldataPS = @()
+    # Add custom type to the resulting oject for formating purpose
+    [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Ao'
 
-  Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Ao'
-    If (!($data.ID -eq $null)) {
-        $AlldataPS += $data
-    }
+    #Write result + Formating
+    Write-Verbose "Total number of AO Configuration: $($dataCount)"
   }
 
-  #Write result + Formating
-  Write-Verbose "Total number of AO Configuration: $($dataCount)"
-  If ($name) {
-      Write-Verbose "Return result(s) with the filter: $($name)"
-      return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
-  } else {
-      Write-Verbose "Return result(s) without any filter"
-      return $AlldataPS
+  Process {
+    If ($name) {
+        Write-Verbose "Return result(s) with the filter: $($name)"
+        return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
+    } else {
+        Write-Verbose "Return result(s) without any filter"
+        return $AlldataPS
+    }
   }
 }
