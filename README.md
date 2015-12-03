@@ -4,7 +4,7 @@
 
 This is a PowerShell module for querying HP 3PAR StoreServ array's API.
 
-For now it only query informations from the array, you can't use it for configuration. I hope it'll be possible in a future release.
+For now it only queries informations from the array, you can't use it for configuration. I hope it'll be possible in a future release.
 
 This is not fully featured or tested, but pull requests would be welcome!
 
