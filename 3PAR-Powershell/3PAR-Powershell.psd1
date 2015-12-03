@@ -96,13 +96,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @('HP','3PAR','StoreServ')
 
         # A URL to the license for this module.
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/equelin/3PAR-Powershell'
 
         # A URL to an icon representing this module.
         # IconUri = ''
