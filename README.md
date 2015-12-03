@@ -66,11 +66,23 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
 # Get a list of the CPGs
     Get-3PARCpgs
 
-# Get innformation of a specific CPG
+# Get informations about a specific CPG
     Get-3PARCpgs -Name FC_r1
 ```
 
 ![Get-3PARCpgs](/Media/Get-3PARCpgs.jpg)
+
+```PowerShell
+# Get informations about a specific CPG with pipelining
+    @('FC_r1','SSD_r5') | Get-3PARCpgs
+
+    Name   ID SizeMiB UsedMiB
+    ----   -- ------- -------
+    FC_r1  0  0       0
+    SSD_r5 4  0       0
+```
+
+
 
 #Available functions
 
