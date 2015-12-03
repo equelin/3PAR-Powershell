@@ -9,7 +9,26 @@ For now it only query informations from the array, you can't use it for configur
 This is not fully featured or tested, but pull requests would be welcome!
 
 #Instructions
+### Enable WSAPI on the 3PAR array
+```powershell
+# Log on to the Processor with administrator privileges
+    ssh <administrator account>@<SP IP Address>
 
+# View the current state of the Web Services API Server
+    showwsapi
+-Service- -State- -HTTP_State- HTTP_Port -HTTPS_State- HTTPS_Port -Version-
+Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
+
+# If the Web Services API Server is disabled, start it
+    startwsapi
+
+# If the HTTP or HTTPS state is disabled, enable one of them
+    setwsapi -http enable
+    or
+    setwsapi -https enable
+```
+
+### Install the module
 ```powershell
 # One time setup
     # Download the repository
@@ -19,7 +38,7 @@ This is not fully featured or tested, but pull requests would be welcome!
     #Simple alternative, if you have PowerShell 5, or the PowerShellGet module:
         Install-Module 3PAR-Powershell
 
-# Import the module.
+# Import the module
     Import-Module 3PAR-Powershell    #Alternatively, Import-Module \\Path\To\3PAR-Powershell
 
 # Get commands in the module
