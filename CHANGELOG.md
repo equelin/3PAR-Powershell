@@ -1,3 +1,6 @@
+## 0.2.0 (December 03, 2015)
+  - Add pipelining possibilities
+
 ## 0.1.1 (December 02, 2015)
   - Add help on functions
 
