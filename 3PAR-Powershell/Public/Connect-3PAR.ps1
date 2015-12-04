@@ -7,6 +7,7 @@ Function Connect-3PAR {
       This function will retrieve a key session from the HP 3PAR StoreServ array. This key will be used by the other functions.
       .NOTES
       Written by Erwan Quelin under Apache licence
+      Based on the work of Chris Wahl - http://wahlnetwork.com/2015/10/29/tackling-basic-restful-authentication-with-powershell/
       .LINK
       https://github.com/equelin/3PAR-Powershell
       .EXAMPLE
