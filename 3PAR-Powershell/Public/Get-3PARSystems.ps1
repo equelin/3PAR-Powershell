@@ -30,12 +30,7 @@ Function Get-3PARSystems {
   $dataPS = ($data.content | ConvertFrom-Json)
 
   # Add custom type to the resulting oject for formating purpose
-  $AlldataPS = @()
-
-  Foreach ($data in $dataPS) {
-    $data = Add-ObjectDetail -InputObject $data -TypeName '3PAR.Systems'
-    $AlldataPS += $data
-  }
+  [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Systems'
 
   #Write result + Formating
   If ($name) {
