@@ -7,15 +7,13 @@ function Format-Result {
       [string]$TypeName
     )
 
-    Begin {
-      $AlldataPS = @()
-    }
+    Begin { $AlldataPS = @() }
 
     Process {
       # Add custom type to the resulting oject for formating purpose
       Foreach ($data in $dataPS) {
         If ($data) {
-          $data = Add-ObjectDetail -InputObject $data -TypeName $TypeName
+          $data.PSObject.TypeNames.Insert(0,$TypeName)
         }
         $AlldataPS += $data
       }
