@@ -32,7 +32,15 @@ Function Get-3PARPorts {
 
     # Add custom type to the resulting oject for formating purpose
     [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.ports'
-  
+
+    [array]$result = @()
+    Foreach ($data in $AlldataPS)
+    {
+      $data.mode = $global:portMode.([string]$data.mode)
+      $data.linkState = $global:portLinkState.([string]$data.linkState)
+      $result += $data
+    }
+
     #Write result + Formating
     Write-Verbose "Total number of ports: $($dataCount)"
   }
@@ -40,10 +48,10 @@ Function Get-3PARPorts {
   process {
     If ($Position) {
         Write-Verbose "Return result(s) with the filter: $($Position)"
-        return $AlldataPS | Where-Object -FilterScript {$_.portPos -like $Position}
+        return $result | Where-Object -FilterScript {$_.portPos -like $Position}
     } else {
         Write-Verbose "Return result(s) without any filter"
-        return $AlldataPS
+        return $result
     }
   }
 

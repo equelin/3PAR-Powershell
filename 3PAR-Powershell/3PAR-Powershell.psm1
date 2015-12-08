@@ -32,3 +32,29 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
 "@
 
 [System.Net.ServicePointManager]::CertificatePolicy = New-Object -TypeName TrustAllCertsPolicy
+
+#Dictionnary declaration
+
+[pscustomobject]$global:portMode = @{
+    '1' = "SUSPENDED";
+    '2' = "TARGET";
+    '3' = "INITIATOR";
+    '4' = "PEER";
+}
+
+[pscustomobject]$global:portLinkState = @{
+    '1' = "CONFIG_WAIT";
+    '2' = "ALPA_WAIT";
+    '3' = "LOGIN_WAIT";
+    '4' = "READY";
+    '5' = "LOSS_SYNC";
+    '6' = "ERROR_STATE";
+    '7' = "XXX";
+    '8' = "NONPARTICIPATE";
+    '9' = "COREDUMP";
+    '10' = "OFFLINE";
+    '11' = "FWDEAD";
+    '12' = "IDLE_FOR_RESET";
+    '13' = "DHCP_IN_PROGRESS";
+    '14' = "PENDING_RESET";
+}
