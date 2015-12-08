@@ -57,11 +57,12 @@ Function Connect-3PAR {
     Write-Verbose -Message 'Submit the session key request'
     Try
     {
-        $credentialdata = Invoke-WebRequest -Uri "$APIurl/credentials" -Body (ConvertTo-Json -InputObject $body) -ContentType "application/json" -Headers $headers -Method POST -UseBasicParsing
+      $credentialdata = Invoke-WebRequest -Uri "$APIurl/credentials" -Body (ConvertTo-Json -InputObject $body) -ContentType "application/json" -Headers $headers -Method POST -UseBasicParsing
     }
     catch
     {
-        throw $_
+      Show-RequestException -Exception $_
+      throw
     }
 
     $global:3parArray = $Server

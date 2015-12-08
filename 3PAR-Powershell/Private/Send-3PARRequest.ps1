@@ -9,7 +9,7 @@ function Send-3PARRequest {
     Begin {}
 
     Process {
-      
+
       $APIurl = 'https://'+$global:3parArray+':8080/api/v1'
 
       $url = $APIurl + $uri
@@ -18,22 +18,17 @@ function Send-3PARRequest {
       $headers = @{}
       $headers["Accept"] = "application/json"
       $headers["X-HP3PAR-WSAPI-SessionKey"] = $global:3parKey
-      
+
       # Request
       Try
       {
           $data = Invoke-WebRequest -Uri "$url" -ContentType "application/json" -Headers $headers -Method GET -UseBasicParsing
-          return $data  
+          return $data
       }
       Catch
       {
-        $result = $_.Exception.Response.GetResponseStream()
-        $reader = New-Object System.IO.StreamReader($result)
-        $responseBody = $reader.ReadToEnd();
-        Write-Verbose "Status: A system exception was caught."
-        Write-Verbose $responsebody
-
-        throw 'Error connecting to HP 3PAR Array'
+        Show-RequestException -Exception $_
+        throw
       }
     }
 
