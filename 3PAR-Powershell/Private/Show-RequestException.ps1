@@ -5,6 +5,7 @@ Function Show-RequestException {
     $Exception
   )
 
+  #Exception catch when there's a connectivity problem with the array
   If ($Exception.Exception.InnerException) {
     Write-Host "Please verify the connectivity with the array. Retry with the parameter -Verbose for more informations" -foreground yellow
     Write-Host
@@ -14,6 +15,7 @@ Function Show-RequestException {
     Write-Host
   }
 
+  #Exception catch when the rest request return an error
   If ($_.Exception.Response) {
     $readStream = New-Object -TypeName System.IO.StreamReader -ArgumentList ($Exception.Exception.Response.GetResponseStream())
     $body = $readStream.ReadToEnd()

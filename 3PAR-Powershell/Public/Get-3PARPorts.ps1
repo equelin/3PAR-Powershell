@@ -16,8 +16,8 @@ Function Get-3PARPorts {
 
   [CmdletBinding()]
   Param(
-      #[Parameter(Mandatory = $false,HelpMessage = 'Port Position n:s:p')]
-      #[String]$Position
+      [Parameter(Mandatory = $false,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'Port Position n:s:p')]
+      [String]$Position
   )
   Begin {
     # Test if connection exist
@@ -36,8 +36,13 @@ Function Get-3PARPorts {
     [array]$result = @()
     Foreach ($data in $AlldataPS)
     {
+
+      $data.PortPos = "$($data.PortPos.node):$($data.PortPos.slot):$($data.PortPos.cardPort)"
+
       $data.mode = $global:portMode.([string]$data.mode)
       $data.linkState = $global:portLinkState.([string]$data.linkState)
+      $data.type = $global:portConnType.([string]$data.type)
+      $data.protocol = $global:portProtocol.([string]$data.protocol)
       $result += $data
     }
 

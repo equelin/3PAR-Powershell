@@ -58,3 +58,34 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
     '13' = "DHCP_IN_PROGRESS";
     '14' = "PENDING_RESET";
 }
+
+[pscustomobject]$global:portConnType = @{
+    '1' = "HOST";
+    '2' = "DISK";
+    '3' = "FREE";
+    '4' = "IPORT";
+    '5' = "RCFC";
+    '6' = "PEER";
+    '7' = "RCIP";
+    '8' = "ISCSI";
+    '9' = "CNA";
+    '10' = "FS";
+}
+
+[pscustomobject]$global:portProtocol = @{
+    '1' = "FC";
+    '2' = "iSCSI";
+    '3' = "FCOE";
+    '4' = "IP";
+    '5' = "SAS";
+}
+
+[pscustomobject]$global:portFailOverState = @{
+    '1' = "NONE";
+    '2' = "FAILOVER_PENDING";
+    '3' = "FAILED_OVER";
+    '4' = "ACTIVE";
+    '5' = "ACTIVE_DOWN";
+    '6' = "ACTIVE_FAILED";
+    '7' = "FAILBACK_PENDING";
+}
