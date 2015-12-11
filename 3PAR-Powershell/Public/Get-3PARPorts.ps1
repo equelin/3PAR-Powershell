@@ -24,7 +24,7 @@ Function Get-3PARPorts {
     Check-3PARConnection
 
     #Request
-    $data = Send-3PARRequest -uri '/ports'
+    $data = Send-3PARRequest -uri '/ports' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members
@@ -36,9 +36,8 @@ Function Get-3PARPorts {
     [array]$result = @()
     Foreach ($data in $AlldataPS)
     {
-
+      #Translate information into more understable values using dictionaries
       $data.PortPos = "$($data.PortPos.node):$($data.PortPos.slot):$($data.PortPos.cardPort)"
-
       $data.mode = $global:portMode.([string]$data.mode)
       $data.linkState = $global:portLinkState.([string]$data.linkState)
       $data.type = $global:portConnType.([string]$data.type)

@@ -25,7 +25,7 @@ Function Get-3PARAo {
     Check-3PARConnection
 
     #Request
-    $data = Send-3PARRequest -uri '/aoconfigurations'
+    $data = Send-3PARRequest -uri '/aoconfigurations' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members

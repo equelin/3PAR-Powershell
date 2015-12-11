@@ -21,7 +21,7 @@ Function Get-3PARWsapiConfiguration {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/wsapiconfiguration'
+  $data = Send-3PARRequest -uri '/wsapiconfiguration' -type 'GET'
 
   # Results
   $dataPS = ($data.content | ConvertFrom-Json)

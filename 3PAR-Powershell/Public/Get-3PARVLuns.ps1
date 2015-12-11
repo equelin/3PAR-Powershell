@@ -28,7 +28,7 @@ Function Get-3PARVLuns {
     Check-3PARConnection
 
     #Request
-    $data = Send-3PARRequest -uri '/vluns'
+    $data = Send-3PARRequest -uri '/vluns' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members

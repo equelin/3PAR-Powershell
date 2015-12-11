@@ -28,7 +28,7 @@ Function Get-3PARCpgs {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/cpgs'
+  $data = Send-3PARRequest -uri '/cpgs' -type 'GET'
 
   # Results
   $dataPS = ($data.content | ConvertFrom-Json).members

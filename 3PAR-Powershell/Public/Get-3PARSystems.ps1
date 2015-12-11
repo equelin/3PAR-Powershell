@@ -24,7 +24,7 @@ Function Get-3PARSystems {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/system'
+  $data = Send-3PARRequest -uri '/system' -type 'GET'
 
   # Results
   $dataPS = ($data.content | ConvertFrom-Json)

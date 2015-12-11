@@ -28,7 +28,7 @@ Function Get-3PARHostSets {
     Check-3PARConnection
 
     #Request
-    $data = Send-3PARRequest -uri '/hostsets'
+    $data = Send-3PARRequest -uri '/hostsets' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members
@@ -36,7 +36,7 @@ Function Get-3PARHostSets {
 
     # Add custom type to the resulting oject for formating purpose
     [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.HostSets'
-  
+
     #Write result + Formating
     Write-Verbose "Total number of Host Sets: $($dataCount)"
   }

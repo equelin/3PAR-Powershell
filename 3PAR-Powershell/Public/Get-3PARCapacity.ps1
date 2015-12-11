@@ -21,7 +21,7 @@ Function Get-3PARCapacity {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/capacity'
+  $data = Send-3PARRequest -uri '/capacity' -type 'GET'
 
   # Results
   $dataPS = ($data.content | ConvertFrom-Json)

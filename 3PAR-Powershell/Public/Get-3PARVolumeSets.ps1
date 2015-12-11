@@ -28,7 +28,7 @@ Function Get-3PARVolumeSets {
     Check-3PARConnection
 
     #Request
-    $data = Send-3PARRequest -uri '/volumesets'
+    $data = Send-3PARRequest -uri '/volumesets' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members

@@ -30,7 +30,7 @@ Function Get-3PARHosts {
     $data = $null
 
     #Request
-    $data = Send-3PARRequest -uri '/hosts'
+    $data = Send-3PARRequest -uri '/hosts' -type 'GET'
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members
