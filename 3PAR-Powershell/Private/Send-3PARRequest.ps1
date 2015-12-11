@@ -2,7 +2,7 @@ function Send-3PARRequest {
     [CmdletBinding()]
     Param (
         [parameter(Position = 0, Mandatory = $true, HelpMessage = "Enter the resource URI (ex. /volumes)")]
-        [ValidateScript({if ($_.startswith('/')) {$true} else {throw "-URI must being with a '/' (eg. /volumes) in its value. Please correct the value and try again."}})]
+        [ValidateScript({if ($_.startswith('/')) {$true} else {throw "-URI must begin with a '/' (eg. /volumes) in its value. Please correct the value and try again."}})]
         [string]$uri,
         [parameter(Position = 1, Mandatory = $true, HelpMessage = "Enter request type (GET POST)")]
         [string]$type,
