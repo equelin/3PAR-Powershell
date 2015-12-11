@@ -21,7 +21,7 @@ Function Get-3PARFlashCache {
   Check-3PARConnection
 
   #Request
-  $data = Send-3PARRequest -uri '/flashcache'  -type 'GET'
+  $data = Send-3PARRequest -uri '/flashcache' -type 'GET'
 
   # Results
   $dataPS = ($data.content | ConvertFrom-Json)
