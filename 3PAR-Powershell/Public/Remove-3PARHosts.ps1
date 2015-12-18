@@ -15,7 +15,7 @@ Function Remove-3PARHosts {
       Remove-3PARHosts -Name 'SRV01'
       Delete host SRV01
       .EXAMPLE
-      'SRV01','SRV02' | Remove-3PARHosts -Name 
+      'SRV01','SRV02' | Remove-3PARHosts -Name
       Delete host SRV01 and SRV02
   #>
 

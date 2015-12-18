@@ -20,6 +20,9 @@ Function Get-3PARAo {
       [String]$name
   )
 
+  Write-host "This function is deprecated. It's still present for compatibility purpose." -foreground yellow
+
+  <#
   Begin {
     # Test if connection exist
     Check-3PARConnection
@@ -47,4 +50,5 @@ Function Get-3PARAo {
         return $AlldataPS
     }
   }
+  #>
 }
