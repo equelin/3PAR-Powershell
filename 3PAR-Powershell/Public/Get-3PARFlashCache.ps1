@@ -20,6 +20,9 @@ Function Get-3PARFlashCache {
   # Test if connection exist
   Check-3PARConnection
 
+  #Test if the WSAPI's version is compatible
+  Check-WSAPICompatibility -WSAPIVersion "1.4.2"
+
   #Request
   $data = Send-3PARRequest -uri '/flashcache' -type 'GET'
 
