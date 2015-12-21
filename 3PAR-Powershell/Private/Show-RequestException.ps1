@@ -22,7 +22,8 @@ Function Show-RequestException {
     $readStream.Close()
     $result = ConvertFrom-Json -InputObject $body
 
-    Write-Host "The array send an error message: $($result.desc). Retry with the parameter -Verbose for more informations" -foreground yellow
+    Write-Host "The array send an error message: $($result.desc)." -foreground yellow
+    Write-Host "Retry with the parameter -Verbose for more informations" -foreground yellow
     Write-Host
     Write-Verbose "Status: $($Exception.Exception.Status)"
     Write-Verbose "Error code: $($result.code)"

@@ -37,7 +37,7 @@ Function Get-3PARCpgs {
   # Add custom type to the resulting oject for formating purpose
   [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Cpgs'
 
-  Write-Verbose "Total number of volumes: $($dataCount)"
+  Write-Verbose "Total number of CPG(s): $($dataCount)"
 }
 
   Process {
