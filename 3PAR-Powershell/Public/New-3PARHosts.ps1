@@ -59,7 +59,9 @@ Function New-3PARHosts {
   Begin {
     # Test if connection exist
     Check-3PARConnection
+  }
 
+  Process {
     # Creation of the body hash
     $body = @{}
 
@@ -108,4 +110,8 @@ Function New-3PARHosts {
     # Results
     Get-3PARHosts -Name $name
   }
+
+  End {
+  }
+
 }

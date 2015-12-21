@@ -27,9 +27,7 @@ Function Connect-3PAR {
       [Parameter(Mandatory = $false,Position = 4,HelpMessage = 'HP 3PAR StoreServ credentials')]
       [System.Management.Automation.CredentialAttribute()]$Credentials
   )
-  Begin {}
 
-  Process {
     Write-Verbose -Message 'Validating that login details were passed into username/password or credentials'
     if ($Password -eq $null -and $Credentials -eq $null)
     {
@@ -71,8 +69,7 @@ Function Connect-3PAR {
     Write-Verbose -Message 'You are now connected to the HP 3PAR StoreServ Array.'
 
     Write-Verbose -Message 'Show array informations:'
-    Get-3PARSystems
-  }
+    $sys = Get-3PARSystems
+    return $sys
 
-  End {}
 }

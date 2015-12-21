@@ -34,20 +34,30 @@ Function Remove-3PARHosts {
   }
 
   Process {
-    #Build uri
-    $uri = '/hosts/'+$name
 
-    if ($pscmdlet.ShouldProcess($name,"Remove host ?")) {
-      #init the response var
-      $data = $null
+    Switch ($Name.GetType().Name)
+    {
+        "string" {
+          $h = Get-3PARHosts -Name $Name
+        }
+        "PSCustomObject" {
+          $h = $Name
+        }
+    }
+    if ($h) {
+      if ($pscmdlet.ShouldProcess($h.name,"Remove host")) {
+        #Build uri
+        $uri = '/hosts/'+$h.Name
 
-      #Request
-      $data = Send-3PARRequest -uri $uri -type 'DELETE'
+        #init the response var
+        $data = $null
+
+        #Request
+        $data = Send-3PARRequest -uri $uri -type 'DELETE'
+      }
     }
   }
 
   End {
-    # Results
-    Get-3PARHosts
   }
 }
