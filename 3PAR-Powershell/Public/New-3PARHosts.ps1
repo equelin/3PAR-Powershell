@@ -11,10 +11,12 @@ Function New-3PARHosts {
       https://github.com/equelin/3PAR-Powershell
       .PARAMETER Name
       Name of the host
+      .PARAMETER Domain
+      Create the host in the specified domain, or default domain if unspecified
       .PARAMETER FCWWNs
-      list of the WWN of the host
+      One or more WWN to set for the host
       .PARAMETER Persona
-      Persona of the host. List of the available persona:
+      ID of the persona to assign to the host. List of the available personas:
         1 : GENERIC
         2 : GENERIC_ALUA
         3 : GENERIC_LEGACY
@@ -26,6 +28,8 @@ Function New-3PARHosts {
         9 : OPENVMS
         10 : HPUX
         11 : WindowsServer
+      .PARAMETER forceTearDown
+      If True, force to tear down low-priority VLUN exports
       .EXAMPLE
       New-3PARHosts -Name 'SRV01'
       Create new host SRV01 with default values
@@ -59,7 +63,7 @@ Function New-3PARHosts {
     # Creation of the body hash
     $body = @{}
 
-    # Name parameter 
+    # Name parameter
     $body["name"] = "$($name)"
 
     # Domain parameter

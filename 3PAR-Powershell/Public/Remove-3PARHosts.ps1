@@ -10,16 +10,19 @@ Function Remove-3PARHosts {
       .LINK
       https://github.com/equelin/3PAR-Powershell
       .PARAMETER Name
-      Name of the host
+      Name of the host to delete
       .EXAMPLE
       Remove-3PARHosts -Name 'SRV01'
       Delete host SRV01
+      .EXAMPLE
+      Remove-3PARHosts -Name 'SRV01' -Confirm:$false
+      Delete host SRV01 without any confirmation
       .EXAMPLE
       'SRV01','SRV02' | Remove-3PARHosts -Name
       Delete host SRV01 and SRV02
   #>
 
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess = $True,ConfirmImpact = 'High')]
   Param(
       [Parameter(Mandatory = $true,ValueFromPipeline=$True,ValueFromPipelinebyPropertyName=$True,HelpMessage = 'Host Name')]
       [String]$name
@@ -34,11 +37,13 @@ Function Remove-3PARHosts {
     #Build uri
     $uri = '/hosts/'+$name
 
-    #init the response var
-    $data = $null
+    if ($pscmdlet.ShouldProcess($name,"Remove host ?")) {
+      #init the response var
+      $data = $null
 
-    #Request
-    $data = Send-3PARRequest -uri $uri -type 'DELETE'
+      #Request
+      $data = Send-3PARRequest -uri $uri -type 'DELETE'
+    }
   }
 
   End {

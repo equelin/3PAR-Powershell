@@ -70,7 +70,7 @@ Function Connect-3PAR {
     Write-Verbose -Message "Acquired token: $global:3parKey"
     Write-Verbose -Message 'You are now connected to the HP 3PAR StoreServ Array.'
 
-    Write-Verbose -Message 'Show array informations'
+    Write-Verbose -Message 'Show array informations:'
     Get-3PARSystems
   }
 
