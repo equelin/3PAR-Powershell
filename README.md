@@ -4,7 +4,7 @@
 
 This is a PowerShell module for querying HP 3PAR StoreServ array's API.
 
-For now it only queries informations from the array, you can't use it for configuration. I hope it'll be possible in a future release.
+You can queries informations about the majority of the functionnalities of the array. Since the version 0.3.0 it is also possible to create, modify and delete a host. Those new functions are mainly incomplete, for example you can't configure iSCSI. Some ehancement are planned in future releases.
 
 This is not fully featured or tested, but pull requests would be welcome!
 
@@ -86,7 +86,8 @@ The first thing to do is to connect to an array:
 #Available functions
 
 - Connect-3PAR
-- Get-3PARAo
+- Disconnect-3PAR (new in v0.3.0)
+- Get-3PARAo (deprecated, I can't figure how it works...)
 - Get-3PARCapacity
 - Get-3PARCpgs
 - Get-3PARFlashCache
@@ -98,6 +99,9 @@ The first thing to do is to connect to an array:
 - Get-3PARVolumes
 - Get-3PARVolumeSets
 - Get-3PARWsapiConfiguration
+- New-3PARHosts (new in v0.3.0)
+- Remove-3PARHosts (new in v0.3.0)
+- Set-3PARHosts (new in v0.3.0)
 
 # Author
 
