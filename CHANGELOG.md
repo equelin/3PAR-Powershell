@@ -1,3 +1,8 @@
+## 0.3.0 (December 22, 2015)
+  - Add new functions to create, modify or remove a host. Those functions are quiet incomplete now but they'll be updated in a future Release
+  - Add tests for comparing WSAPI versions. It's particulary useful when a functionality is not available on the array like FlashCache
+  - Bug corrections
+
 ## 0.2.0 (December 03, 2015)
   - Add pipelining possibilities
 
