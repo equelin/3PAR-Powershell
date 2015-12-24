@@ -52,7 +52,6 @@ function Send-3PARRequest {
     If ($type -eq 'DELETE') {
       Try
       {
-        $json = $body | ConvertTo-Json
         $data = Invoke-WebRequest -Uri "$url" -Headers $headers -Method $type -UseBasicParsing
         return $data
       }

@@ -12,7 +12,7 @@
 RootModule = '3PAR-Powershell.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.3.0'
+ModuleVersion = '0.3.1'
 
 # ID used to uniquely identify this module
 GUID = 'bef3789f-2093-4ed3-93de-7b1b5c40c2ac'
@@ -64,7 +64,7 @@ FormatsToProcess = '3PAR-Powershell.Volumes.Format.ps1xml','3PAR-Powershell.Host
                    '3PAR-Powershell.Systems.Format.ps1xml','3PAR-Powershell.Cpgs.Format.ps1xml',
                    '3PAR-Powershell.VolumeSets.Format.ps1xml','3PAR-Powershell.HostSets.Format.ps1xml',
                    '3PAR-Powershell.Ports.Format.ps1xml','3PAR-Powershell.Vluns.Format.ps1xml',
-                   '3PAR-Powershell.Ao.Format.ps1xml'
+                   '3PAR-Powershell.Ao.Format.ps1xml','3PAR-Powershell.WsapiConfiguration.Format.ps1xml'
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()

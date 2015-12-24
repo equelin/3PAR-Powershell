@@ -9,8 +9,10 @@ Function Check-WSAPICompatibility {
 
   If ($WSAPI -le $WSAPIVersion) {
     Write-Warning 'The array does not support this functionnality'
-    Write-Warning "The WSAPI version needed is: $($WSAPIVersion)" 
-    break
+    Write-Warning "The WSAPI version needed is: $($WSAPIVersion)"
+    return $false
+  } else {
+    return $true
   }
 
 }

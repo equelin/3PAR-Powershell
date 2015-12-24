@@ -14,19 +14,35 @@ Function Disconnect-3PAR {
       Disconnect the last session to the HP 3PAR StoreServ array
   #>
 
-  [CmdletBinding()]
+  [CmdletBinding(SupportsShouldProcess = $True,ConfirmImpact = 'High')]
   Param(
   )
-  Begin {}
+  Begin {
+    # Test if connection exist
+    Check-3PARConnection
+  }
 
   Process {
-    If ($global:3parkey) {
-      Write-Verbose -Message "Delete key session: $global:3parkey"
-      Remove-Variable -name 3parKey -scope global
-    }
-    If ($global:3parArray) {
-      Write-Verbose -Message "Delete Array: $global:3parArray"
-      Remove-Variable -name 3parArray -scope global
+    if ($pscmdlet.ShouldProcess($h.name,"Disconnect from array")) {
+      #Build uri
+      $uri = '/credentials/'+$global:3parkey
+
+      #init the response var
+      $data = $null
+
+      #Request
+      $data = Send-3PARRequest -uri $uri -type 'DELETE'
+
+      If ($global:3parkey) {
+        Write-Verbose -Message "Delete key session: $global:3parkey"
+        Remove-Variable -name 3parKey -scope global
+      }
+
+      If ($global:3parArray) {
+        Write-Verbose -Message "Delete Array: $global:3parArray"
+        Remove-Variable -name 3parArray -scope global
+      }
+
     }
   }
 

@@ -17,16 +17,23 @@ Function Get-3PARWsapiConfiguration {
   [CmdletBinding()]
   Param()
 
-  # Test if connection exist
-  Check-3PARConnection
+  Begin {
+    # Test if connection exist
+    Check-3PARConnection
 
-  #Request
-  $data = Send-3PARRequest -uri '/wsapiconfiguration' -type 'GET'
+    #Request
+    $data = Send-3PARRequest -uri '/wsapiconfiguration' -type 'GET'
 
-  # Results
-  $dataPS = ($data.content | ConvertFrom-Json)
+    # Results
+    $dataPS = ($data.content | ConvertFrom-Json)
 
-  #Write result + Formating
-  Write-Verbose "Return result(s) without any filter"
-  return $dataPS
+    [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.WsapiConfiguration'
+  }
+
+  Process {
+    #Write result + Formating
+    Write-Verbose "Return result(s) without any filter"
+    $AlldataPS
+  }
+
 }

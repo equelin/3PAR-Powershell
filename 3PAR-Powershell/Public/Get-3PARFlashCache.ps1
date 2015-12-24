@@ -21,15 +21,15 @@ Function Get-3PARFlashCache {
   Check-3PARConnection
 
   #Test if the WSAPI's version is compatible
-  Check-WSAPICompatibility -WSAPIVersion "1.4.2"
+  If (Check-WSAPICompatibility -WSAPIVersion "1.4.2") {
+    #Request
+    $data = Send-3PARRequest -uri '/flashcache' -type 'GET'
 
-  #Request
-  $data = Send-3PARRequest -uri '/flashcache' -type 'GET'
+    # Results
+    $dataPS = ($data.content | ConvertFrom-Json)
 
-  # Results
-  $dataPS = ($data.content | ConvertFrom-Json)
-
-  #Write result + Formating
-  Write-Verbose "Return result(s) without any filter"
-  return $dataPS
+    #Write result + Formating
+    Write-Verbose "Return result(s) without any filter"
+    return $dataPS
+  }
 }

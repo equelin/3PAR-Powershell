@@ -69,7 +69,6 @@ Function Connect-3PAR {
     Write-Verbose -Message 'You are now connected to the HP 3PAR StoreServ Array.'
 
     Write-Verbose -Message 'Show array informations:'
-    $sys = Get-3PARSystems
-    return $sys
+    Get-3PARSystems | ft
 
 }

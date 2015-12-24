@@ -1,3 +1,8 @@
+## 0.3.1 (December 24, 2015)
+  - Christmas release !!
+  - Modify Disconnect-3PAR, it now really delete the session on the array and the host
+  - Bug corrections
+
 ## 0.3.0 (December 22, 2015)
   - Add new functions to create, modify or remove a host. Those functions are quiet incomplete now but they'll be updated in a future Release
   - Add tests for comparing WSAPI versions. It's particulary useful when a functionality is not available on the array like FlashCache
