@@ -1,10 +1,10 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/dkftdsb4yhwq7gem?svg=true)](https://ci.appveyor.com/project/equelin/3par-powershell)
+[![GitHub version](https://badge.fury.io/gh/equelin%2F3PAR-Powershell.svg)](https://badge.fury.io/gh/equelin%2F3PAR-Powershell) [![Build status](https://ci.appveyor.com/api/projects/status/dkftdsb4yhwq7gem?svg=true)](https://ci.appveyor.com/project/equelin/3par-powershell)
 
 # 3PAR-Powershell
 
 This is a PowerShell module for querying HP 3PAR StoreServ array's API.
 
-You can queries informations about the majority of the functionnalities of the array. Since the version 0.3.0 it is also possible to create, modify and delete a host. Those new functions are mainly incomplete, for example you can't configure iSCSI. Some ehancement are planned in future releases.
+You can query informations about the majority of the functionnalities of the array. Since the version 0.3.0 it is also possible to create, modify and delete a host. Those new functions are mainly incomplete, for example you can't configure iSCSI. Some ehancement are planned in future releases.
 
 This is not fully featured or tested, but pull requests would be welcome!
 
