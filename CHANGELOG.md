@@ -1,3 +1,7 @@
+## 0.4.0 (December 28, 2015)
+  - Add new functions to create, modify or remove a storage volume.
+  - Bug corrections
+
 ## 0.3.1 (December 24, 2015)
   - Christmas release !!
   - Modify Disconnect-3PAR, it now really delete the session on the array and the host

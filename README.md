@@ -1,4 +1,4 @@
-[![GitHub version](https://badge.fury.io/gh/equelin%2F3PAR-Powershell.svg)](https://badge.fury.io/gh/equelin%2F3PAR-Powershell) 
+[![GitHub version](https://badge.fury.io/gh/equelin%2F3PAR-Powershell.svg)](https://badge.fury.io/gh/equelin%2F3PAR-Powershell)
 
 # 3PAR-Powershell
 
@@ -8,7 +8,7 @@ You can query informations about the majority of the functionnalities of the arr
 
 This is not fully featured or tested, but pull requests would be welcome!
 
-#Instructions
+# Instructions
 ### Enable WSAPI on the 3PAR array
 ```powershell
 # Log on to the Processor with administrator privileges
@@ -49,7 +49,7 @@ Enabled   Active  Disabled          8008 Enabled             8080 1.3.1
     Get-Help 3PAR-Powershell
 ```
 
-#Examples
+# Examples
 ### Connect to the 3PAR array
 
 The first thing to do is to connect to an array:
@@ -61,7 +61,7 @@ The first thing to do is to connect to an array:
 
 ![Connect-3PAR](/Media/Connect-3PAR.jpg)
 
-### List CPGs
+### Working with CPGs
 
 ```PowerShell
 # Get a list of the CPGs
@@ -82,8 +82,27 @@ The first thing to do is to connect to an array:
     FC_r1  0  0       0
     SSD_r5 4  0       0
 ```
+### Working with Volumes
 
-#Available functions
+```PowerShell
+# Get a list of the volumes
+    Get-3PARVolumes
+
+    Name    ID SizeMiB usedMiB userCPG provisioningType State
+    ----    -- ------- ------- ------- ---------------- -----
+    admin   0  10240   10240           FULL             NORMAL
+    .srdata 1  61440   61440           FULL             NORMAL
+    VOL04   6  9216    0       FC_r1   TPVV             NORMAL
+    VOL01   7  10240   512     FC_r5   TPVV             NORMAL
+
+# Create a new storage volume
+    New-3PARVolumes -name VOL01 -cpg FC_r5 -sizeMiB 10000 -tpvv
+
+# Rename a storage volume
+    Set-3PARVolumes -name VOL04 -newName VOL05
+```
+
+# Available functions
 
 - Connect-3PAR
 - Disconnect-3PAR (new in v0.3.0)
@@ -102,6 +121,9 @@ The first thing to do is to connect to an array:
 - New-3PARHosts (new in v0.3.0)
 - Remove-3PARHosts (new in v0.3.0)
 - Set-3PARHosts (new in v0.3.0)
+- New-3PARVolumes (new in v0.4.0)
+- Remove-3PARVolumes (new in v0.4.0)
+- Set-3PARVolumes (new in v0.4.0)
 
 # Author
 
