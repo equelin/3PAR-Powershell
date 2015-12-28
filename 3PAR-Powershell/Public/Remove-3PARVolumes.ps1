@@ -1,10 +1,10 @@
-Function Remove-3PARHosts {
+Function Remove-3PARVolumes {
 
   <#
       .SYNOPSIS
-      Delete a host
+      Remove a storage volume
       .DESCRIPTION
-      This function will delete a host. You need to have an active session with the array.
+      This function will remove a storage volume. You need to have an active session with the array.
       .NOTES
       Written by Erwan Quelin under Apache licence
       .LINK
@@ -12,14 +12,14 @@ Function Remove-3PARHosts {
       .PARAMETER Name
       Name of the host to delete
       .EXAMPLE
-      Remove-3PARHosts -Name 'SRV01'
-      Delete host SRV01
+      Remove-3PARVolumes -Name 'VOL01'
+      Delete volume SRV01
       .EXAMPLE
-      Remove-3PARHosts -Name 'SRV01' -Confirm:$false
-      Delete host SRV01 without any confirmation
+      Remove-3PARVolumes -Name 'VOL01' -Confirm:$false
+      Delete volume SRV01 without any confirmation
       .EXAMPLE
-      'SRV01','SRV02' | Remove-3PARHosts
-      Delete host SRV01 and SRV02
+      'VOL01','VOL02' | Remove-3PARVolumes
+      Delete volume SRV01 and VOL02
   #>
 
   [CmdletBinding(SupportsShouldProcess = $True,ConfirmImpact = 'High')]
@@ -38,16 +38,16 @@ Function Remove-3PARHosts {
     Switch ($Name.GetType().Name)
     {
         "string" {
-          $h = Get-3PARHosts -Name $Name
+          $h = Get-3PARVolumes -Name $Name
         }
         "PSCustomObject" {
           $h = $Name
         }
     }
     if ($h) {
-      if ($pscmdlet.ShouldProcess($h.name,"Remove host")) {
+      if ($pscmdlet.ShouldProcess($h.name,"Remove volume")) {
         #Build uri
-        $uri = '/hosts/'+$h.Name
+        $uri = '/volumes/'+$h.Name
 
         #init the response var
         $data = $null

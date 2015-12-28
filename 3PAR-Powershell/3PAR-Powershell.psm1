@@ -35,6 +35,8 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
 
 #Dictionnary declaration
 
+##### Port Dictionnary
+
 [pscustomobject]$global:portMode = @{
     '1' = "SUSPENDED";
     '2' = "TARGET";
@@ -88,4 +90,53 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
     '5' = "ACTIVE_DOWN";
     '6' = "ACTIVE_FAILED";
     '7' = "FAILBACK_PENDING";
+}
+
+##### Host Dictionnary
+
+[pscustomobject]$global:provisioningType = @{
+    '1' = "FULL";
+    '2' = "TPVV";
+    '3' = "SNP";
+    '4' = "PEER";
+    '5' = "UNKNOWN";
+    '6' = "TDVV";
+}
+
+[pscustomobject]$global:CopyType = @{
+    '1' = "BASE";
+    '2' = "PHYSICAL_COPY";
+    '3' = "VIRTUAL_COPY";
+}
+
+[pscustomobject]$global:state = @{
+    '1' = "NORMAL";
+    '2' = "DEGRADED";
+    '3' = "FAILED";
+}
+
+[pscustomobject]$global:DetailedState = @{
+    '1' = "LDS_NOT_STARTED";
+    '2' = "NOT_STARTED";
+    '3' = "NEEDS_CHECK";
+    '4' = "NEEDS_MAINT_CHECK";
+    '5' = "INTERNAL_CONSISTENCY_ERROR";
+    '6' = "SNAPDATA_INVALID";
+    '7' = "PRESERVED";
+    '8' = "STALE";
+    '9' = "COPY_FAILED";
+    '10' = "DEGRADED_AVAIL";
+    '11' = "DEGRADED_PERF";
+    '12' = "PROMOTING";
+    '13' = "COPY_TARGET";
+    '14' = "RESYNC_TARGET";
+    '15' = "TUNING";
+    '16' = "CLOSING";
+    '17' = "REMOVING";
+    '18' = "REMOVING_RETRY";
+    '19' = "CREATING";
+    '20' = "COPY_SOURCE";
+    '21' = "IMPORTING";
+    '22' = "CONVERTING";
+    '23' = "INVALID";
 }

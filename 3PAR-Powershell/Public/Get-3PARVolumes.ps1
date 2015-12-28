@@ -37,6 +37,16 @@ Function Get-3PARVolumes {
     # Add custom type to the resulting oject for formating purpose
     [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Volumes'
 
+    [array]$result = @()
+    Foreach ($data in $AlldataPS)
+    {
+      #Translate information into more understable values using dictionaries
+      $data.provisioningType = $global:provisioningType.([string]$data.provisioningType)
+      $data.CopyType = $global:CopyType.([string]$data.CopyType)
+      $data.state = $global:state.([string]$data.state)
+      $result += $data
+    }
+
     Write-Verbose "Total number of volumes: $($dataCount)"
   }
 
@@ -44,10 +54,10 @@ Function Get-3PARVolumes {
     #Write result + Formating
     If ($name) {
         Write-Verbose "Return result(s) with the filter: $($name)"
-        return $AlldataPS | Where-Object -FilterScript {$_.Name -like $name}
+        return $result | Where-Object -FilterScript {$_.Name -like $name}
     } else {
         Write-Verbose "Return result(s) without any filter"
-        return $AlldataPS
+        return $result
     }
   }
 }

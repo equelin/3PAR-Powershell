@@ -24,7 +24,22 @@
             <Alignment>Left</Alignment>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>freeMiB</Label>
+            <Label>usedMiB</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>userCPG</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>provisioningType</Label>
+            <!--<AutoSize/>-->
+            <Alignment>Left</Alignment>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>State</Label>
             <!--<AutoSize/>-->
             <Alignment>Left</Alignment>
           </TableColumnHeader>
@@ -42,7 +57,16 @@
                 <PropertyName>sizeMiB</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>$_.userSpace.freeMiB</ScriptBlock>
+                <ScriptBlock>$_.userSpace.usedMiB</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>userCPG</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>provisioningType</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>State</PropertyName>
               </TableColumnItem>
             </TableColumnItems>
           </TableRowEntry>
