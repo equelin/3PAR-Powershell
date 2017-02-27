@@ -50,8 +50,8 @@ Function Set-3PARHosts {
       $Name,
       [Parameter(Mandatory = $false,HelpMessage = 'Domain')]
       [String]$newName = $null,
-      [Parameter(Mandatory = $false,HelpMessage = 'Host Personna')]
-      [ValidateRange(1,11)]
+      [Parameter(Mandatory = $false,HelpMessage = 'Host Persona')]
+      [ValidateRange(1,15)]
       [int]$persona = $null,
       [Parameter(Mandatory = $false,HelpMessage = 'Force path removal')]
       [switch]$forcePathRemoval,

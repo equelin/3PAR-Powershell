@@ -34,9 +34,17 @@ Function Get-3PARHosts {
 
     # Results
     $dataPS = ($data.content | ConvertFrom-Json).members
-
+	
     # Add custom type to the resulting oject for formating purpose
     [array]$AlldataPS = Format-Result -dataPS $dataPS -TypeName '3PAR.Hosts'
+	
+	[array]$result = @()
+    Foreach ($data in $AlldataPS)
+    {
+      #Translate information into more understable values using dictionaries
+      $data.persona = $global:persona.([string]$data.persona)
+      $result += $data
+    }
   }
 
   Process {

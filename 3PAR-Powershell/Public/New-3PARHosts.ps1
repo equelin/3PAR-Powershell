@@ -19,26 +19,26 @@ Function New-3PARHosts {
       ID of the persona to assign to the host. List of the available personas:
         1 : GENERIC
         2 : GENERIC_ALUA
-        3 : GENERIC_LEGACY
-        4 : HPUX_LEGACY
-        5 : AIX_LEGACY
-        6 : EGENERA
-        7 : ONTAP_LEGACY
-        8 : VMWARE
-        9 : OPENVMS
-        10 : HPUX
-        11 : WindowsServer
+        6 : GENERIC_LEGACY
+        7 : HPUX_LEGACY
+        8 : AIX_LEGACY
+        9 : EGENERA
+        10 : ONTAP_LEGACY
+        11 : VMWARE
+        12 : OPENVMS
+        13 : HPUX
+        15 : WindowsServer
       .PARAMETER forceTearDown
       If True, force to tear down low-priority VLUN exports
       .EXAMPLE
       New-3PARHosts -Name 'SRV01'
       Create new host SRV01 with default values
       .EXAMPLE
-      New-3PARHosts -Name 'SRV01' -Persona 8
-      Create new host SRV01 with persona 8 (VMware)
+      New-3PARHosts -Name 'SRV01' -Persona 11
+      Create new host SRV01 with persona 11 (VMware)
       .EXAMPLE
-      New-3PARHosts -Name 'SRV01' -Persona 8 -FCWWNs '20000000c9695b70','10000000c9695b70'
-      Create new host SRV01 with persona 8 (VMware) and the specified WWNs
+      New-3PARHosts -Name 'SRV01' -Persona 11 -FCWWNs '20000000c9695b70','10000000c9695b70'
+      Create new host SRV01 with persona 11 (VMware) and the specified WWNs
   #>
 
   [CmdletBinding()]
@@ -51,8 +51,8 @@ Function New-3PARHosts {
       [String[]]$FCWWNs = $null,
       [Parameter(Mandatory = $false,HelpMessage = 'forceTearDown')]
       [Boolean]$forceTearDown = $false,
-      [Parameter(Mandatory = $false,HelpMessage = 'Host Personna')]
-      [ValidateRange(1,11)]
+      [Parameter(Mandatory = $false,HelpMessage = 'Host Persona')]
+      [ValidateRange(1,15)]
       [int]$persona = $null
   )
 
@@ -80,7 +80,8 @@ Function New-3PARHosts {
 
     # persona parameter
     If ($persona) {
-      $body["persona"] = $persona
+		#Translate information into more understable values using dictionaries
+		$body["persona"] = $global:persona.([string]$persona)
     }
 
     # FCWWNs parameter
@@ -93,7 +94,7 @@ Function New-3PARHosts {
         $FCWWN = $FCWWN -replace ':'
 
         If ($FCWWN.Length -ne 16) {
-          write-host "$($FCWWN) WWN should contains only 16 characters" -foreground red
+          write-host "$($FCWWN) WWN must contain 16 characters" -foreground red
           break
         }
         $WWN += $FCWWN
