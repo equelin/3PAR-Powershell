@@ -140,3 +140,19 @@ public class TrustAllCertsPolicy : ICertificatePolicy {
     '22' = "CONVERTING";
     '23' = "INVALID";
 }
+
+#Translation for WSAPI to CLI personas
+
+[pscustomobject]$global:persona = @{
+    '1' = "1";
+    '2' = "2";
+    '3' = "6";
+	'4' = "7";
+    '5' = "8";
+    '6' = "9";
+	'7' = "10";
+    '8' = "11";
+    '9' = "12";
+	'10' = "13";
+    '11' = "15";
+}
