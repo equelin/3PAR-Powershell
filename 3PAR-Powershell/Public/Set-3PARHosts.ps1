@@ -21,15 +21,15 @@ Function Set-3PARHosts {
       ID of the persona to assign to the host. List of the available personas:
         1 : GENERIC
         2 : GENERIC_ALUA
-        3 : GENERIC_LEGACY
-        4 : HPUX_LEGACY
-        5 : AIX_LEGACY
-        6 : EGENERA
-        7 : ONTAP_LEGACY
-        8 : VMWARE
-        9 : OPENVMS
-        10 : HPUX
-        11 : WindowsServer
+        6 : GENERIC_LEGACY
+        7 : HPUX_LEGACY
+        8 : AIX_LEGACY
+        9 : EGENERA
+        10 : ONTAP_LEGACY
+        11 : VMWARE
+        12 : OPENVMS
+        13 : HPUX
+        15 : WindowsServer
       .EXAMPLE
       Set-3PARHosts -Name 'SRV01' -newName 'SRV02'
       Rename host SRV01 to SRV02
@@ -88,7 +88,11 @@ Function Set-3PARHosts {
 
         # persona parameter
         If ($persona) {
-          $body["persona"] = $persona
+            #Translate information into more understandable values using dictionaries
+
+			foreach ($key in ($global:persona.getEnumerator() | ?{$_.Value -eq [string]$persona})) {
+                $body["persona"] = $([int]$key.name)
+            }
         }
 
         # forcePathRemoval parameter
@@ -125,7 +129,7 @@ Function Set-3PARHosts {
             $FCWWN = $FCWWN -replace ':'
 
             If ($FCWWN.Length -ne 16) {
-              write-host "$($FCWWN) WWN should contains only 16 characters" -foreground red
+              write-host "$($FCWWN) WWN must contain 16 characters" -foreground red
               break
             }
             $WWN += $FCWWN

@@ -80,8 +80,11 @@ Function New-3PARHosts {
 
     # persona parameter
     If ($persona) {
-		#Translate information into more understable values using dictionaries
-		$body["persona"] = $global:persona.([string]$persona)
+		#Translate information into more understandable values using dictionaries
+
+		foreach ($key in ($global:persona.getEnumerator() | ?{$_.Value -eq [string]$persona})) {
+            $body["persona"] = $([int]$key.name)
+        }
     }
 
     # FCWWNs parameter
@@ -104,6 +107,7 @@ Function New-3PARHosts {
 
     #init the response var
     $data = $null
+
 
     #Request
     $data = Send-3PARRequest -uri '/hosts' -type 'POST' -body $body
