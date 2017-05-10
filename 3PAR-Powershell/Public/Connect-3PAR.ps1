@@ -49,6 +49,12 @@ Function Connect-3PAR {
       user=$Credentials.username;
       password=$Credentials.GetNetworkCredential().Password
     }
+
+    if($body['user'].SubString(0,1) -eq '\') {
+        Write-Verbose -Message 'Remove prepending "\" from username for authentification'
+        $body['user']=$body['user'].SubString(1)
+    }
+
     $headers = @{}
     $headers["Accept"] = "application/json"
 
