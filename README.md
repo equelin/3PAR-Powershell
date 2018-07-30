@@ -1,3 +1,12 @@
+# THIS MODULE IS NO LONGER MAINTAINED
+
+Please look at the official HPE module:
+
+https://h20392.www2.hpe.com/portal/swdepot/displayProductInfo.do?productNumber=3PARPSToolkit
+
+
+
+
 [![Build status](https://ci.appveyor.com/api/projects/status/dkftdsb4yhwq7gem/branch/master?svg=true)](https://ci.appveyor.com/project/equelin/3par-powershell/branch/master) [![GitHub version](https://badge.fury.io/gh/equelin%2F3PAR-Powershell.svg)](https://badge.fury.io/gh/equelin%2F3PAR-Powershell)
 
 # 3PAR-Powershell
